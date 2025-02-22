@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
 using ParkingSystem.Data;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddUserSecrets<Program>();
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<CarDbContext>(options => options.UseNpgsql(connectionString));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

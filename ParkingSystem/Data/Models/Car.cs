@@ -5,6 +5,7 @@ namespace ParkingSystem.Data.Models
     public class Car
     {
         [Required]
+        [Key]
         public string CarMake { get; set; } = null!;
 
         [Required]
