@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ParkingSystem.Data;
 namespace ParkingSystem.Extensions
 {
-    public static  class WebApplicationExtensions
+    public static class WebApplicationExtensions
     {
         public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder app)
         {
