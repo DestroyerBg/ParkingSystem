@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ParkingSystem.Data;
+using ParkingSystem.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddDbContext<CarDbContext>(options => options.UseNpgsql(connect
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<CarInMemoryDb>();
+builder.Services.AddScoped<CarService>();
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
