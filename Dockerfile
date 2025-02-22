@@ -5,6 +5,7 @@ WORKDIR /app
 COPY . .
 RUN dotnet restore
 RUN dotnet publish -c Release -o /out
+RUN dotnet ef database update
 
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime

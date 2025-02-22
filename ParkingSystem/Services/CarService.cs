@@ -15,8 +15,14 @@ namespace ParkingSystem.Services
 
         public async Task AddCar(Car car)
         {
-            context.Cars.Add(car);
-            await context.SaveChangesAsync();
+            context.Cars.Add(new Car()
+            {
+                Id = Guid.NewGuid(),
+                CarMake = car.CarMake,
+                PlateNumber = car.PlateNumber
+            });
+
+        await context.SaveChangesAsync();
         }
 
         public async Task<IList<Car>> GetCars()
@@ -26,9 +32,9 @@ namespace ParkingSystem.Services
                 .ToList();
         }
 
-        public async Task<Car> GetCarById(string plateNumber)
+        public async Task<Car> GetCarById(string id)
         {
-            return await context.Cars.FirstOrDefaultAsync(c => c.PlateNumber == plateNumber);
+            return await context.Cars.FirstOrDefaultAsync(c => c.Id == Guid.Parse(id));
         }
 
         public async Task RemoveCar(string plateNumber)

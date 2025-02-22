@@ -38,14 +38,8 @@
                     </td>
                     <td>
                         <form method="post" asp-controller="Car" asp-action="DeleteCar">
-                            <input type="hidden" name="plateNumber" asp-for="@item.PlateNumber" />
+                            <input type="hidden" name="id" asp-for="@item.Id" />
                             <input type="submit" value="Delete" class="btn btn-danger" />
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post">
-                            <input type="hidden" name="plateNumber" asp-for="@item.PlateNumber" />
-                            <input type="submit" value="Edit" class="btn btn-info" />
                         </form>
                     </td>
                 </tr>

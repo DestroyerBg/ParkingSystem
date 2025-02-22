@@ -1,41 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ParkingSystem.Data;
 using ParkingSystem.Data.Models;
+using ParkingSystem.Services;
 
 namespace ParkingSystem.Controllers
 {
     public class CarController : Controller
     {
-        private CarInMemoryDb carDb;
+       private readonly CarService carService;
 
-        public CarController(CarInMemoryDb db)
+        public CarController(CarService _carService)
         {
-            carDb = db;
+            carService = _carService;
         }
 
-        public IActionResult Index()
+        public async  Task<IActionResult> Index()
         {
-            return View(carDb.GetCars());
+            return View(await carService.GetCars());
         }
 
-        public IActionResult AddCar(Car car)
+        public async  Task<IActionResult> AddCar(Car car)
         {
-            Car? carHere = carDb.GetCarById(car.PlateNumber);
-            if (carHere != null)
-            {
-                TempData["Error"] = "Car with this plate number already exists!";
-            }
-            else
-            {
-                carDb.AddCar(car);
-            }
+            await carService.AddCar(car);
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult DeleteCar(string plateNumber)
+        public async Task<IActionResult> DeleteCar(string id)
         {
-            carDb.RemoveCar(plateNumber);
+            await carService.RemoveCar(id);
             return RedirectToAction("Index");
         }
     }
