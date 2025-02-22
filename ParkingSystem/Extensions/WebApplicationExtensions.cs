@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ParkingSystem.Data;
-
 namespace ParkingSystem.Extensions
 {
     public static  class WebApplicationExtensions
@@ -17,5 +16,4 @@ namespace ParkingSystem.Extensions
 
             return app;
         }
-    }
 }
