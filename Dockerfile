@@ -5,8 +5,7 @@ COPY . .
 
 RUN dotnet restore
 
-RUN dotnet tool install --global dotnet-ef
-ENV PATH="${PATH}:/root/.dotnet/tools"
+RUN dotnet workload install microsoft.entityframeworkcore.tools
 
 RUN dotnet publish -c Release -o /out
 
