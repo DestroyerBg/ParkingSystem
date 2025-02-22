@@ -16,4 +16,5 @@ namespace ParkingSystem.Extensions
 
             return app;
         }
+    }
 }
