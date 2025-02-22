@@ -1,15 +1,15 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
+
 COPY . .
 
 RUN dotnet restore
 
 RUN dotnet publish -c Release -o /out
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS final
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS runtime  # ❗ НЕ използвай aspnet image, защото ни трябва SDK
 WORKDIR /app
 
-COPY --from=base /out ./
+COPY --from=build /out ./
 
 CMD ["sh", "-c", "dotnet ef database update && dotnet ParkingSystem.dll"]
-
