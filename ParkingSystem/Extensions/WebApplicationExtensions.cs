@@ -1,15 +1,19 @@
-public static class WebApplicationExtensions
+using Microsoft.EntityFrameworkCore;
+using ParkingSystem.Data;
+namespace ParkingSystem.Extensions
 {
-    public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder app)
+    public static  class WebApplicationExtensions
     {
-        using IServiceScope serviceScope = app.ApplicationServices.CreateScope();
+        public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder app)
+        {
+            using IServiceScope serviceScope = app.ApplicationServices.CreateScope();
 
-        CarDbContext dbContext = serviceScope
-            .ServiceProvider
-            .GetRequiredService<CarDbContext>();
+            CarDbContext dbContext = serviceScope
+                .ServiceProvider
+                .GetRequiredService<CarDbContext>();
 
-        dbContext.Database.Migrate();
+            dbContext.Database.Migrate();
 
-        return app;
-    }
+            return app;
+        }
 }
