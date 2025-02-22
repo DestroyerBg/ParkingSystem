@@ -22,7 +22,7 @@ namespace ParkingSystem.Services
                 PlateNumber = car.PlateNumber
             });
 
-        await context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
         public async Task<IList<Car>> GetCars()
