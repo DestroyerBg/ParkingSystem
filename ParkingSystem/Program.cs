@@ -6,7 +6,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddUserSecrets<Program>();
 string connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
-    //builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<CarDbContext>(options => options.UseNpgsql(connectionString));
 // Add services to the container.
