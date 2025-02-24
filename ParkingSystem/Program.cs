@@ -20,7 +20,6 @@ NpgsqlConnectionStringBuilder connectionStrinbulder = new NpgsqlConnectionString
 
 connectionString = connectionStrinbulder.ConnectionString;
 
-Console.WriteLine(connectionString);
 
 builder.Services.AddDbContext<CarDbContext>(options => options.UseNpgsql(connectionString));
 // Add services to the container.
