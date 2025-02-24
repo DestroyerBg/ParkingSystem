@@ -9,6 +9,8 @@ builder.Configuration.AddUserSecrets<Program>();
 string connectionString = Environment.GetEnvironmentVariable("ConnectionStrings_DefaultConnection") ??
     builder.Configuration.GetConnectionString("DefaultConnection");
 
+Console.WriteLine(connectionString);
+
 builder.Services.AddDbContext<CarDbContext>(options => options.UseNpgsql(connectionString));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
