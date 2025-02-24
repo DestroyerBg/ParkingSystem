@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using ParkingSystem.Data;
 using ParkingSystem.Extensions;
 using ParkingSystem.Services;
@@ -8,6 +9,16 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddUserSecrets<Program>();
 string connectionString = Environment.GetEnvironmentVariable("ConnectionStrings_DefaultConnection") ??
     builder.Configuration.GetConnectionString("DefaultConnection");
+
+connectionString = connectionString.Trim('"');
+
+NpgsqlConnectionStringBuilder connectionStrinbulder = new NpgsqlConnectionStringBuilder(connectionString)
+{
+    SslMode = SslMode.Prefer,
+    TrustServerCertificate = true,
+};
+
+connectionString = connectionStrinbulder.ConnectionString;
 
 Console.WriteLine(connectionString);
 
